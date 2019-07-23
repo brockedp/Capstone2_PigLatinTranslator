@@ -49,8 +49,6 @@ namespace Capstone2_PigLatin
         public static void TranslatePigLatin(string message)
         {
             char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
-            string vowelFirst = "way";
-            string consonantFirst = "ay";
             string[] inputArray = message.Split(" ");
             int length = inputArray.Length;
            
@@ -61,17 +59,11 @@ namespace Capstone2_PigLatin
                int indexNum = word.IndexOfAny(vowels);
                if (indexNum == 0)
                {
-                   string vowelPigLatin = word + vowelFirst;
-                   Console.Write(vowelPigLatin + " ");
-                   
-               
+                    TranslateVowel(word); 
                }
                else if (indexNum > 0)
                {
-                   string substring1 = word.Substring(0, indexNum);
-                   string substring2 = word.Substring(indexNum);
-                   string consonantPigLatin = substring2 + substring1 + consonantFirst;
-                   Console.Write(consonantPigLatin + " ");
+                    TranslateConsonant(word, indexNum);
                }
                else
                {
@@ -83,6 +75,21 @@ namespace Capstone2_PigLatin
             }
 
         }
-       
+        public static void TranslateConsonant(string word, int indexNum)
+        {
+            string consonantFirst = "ay";
+            string substring1 = word.Substring(0, indexNum);
+            string substring2 = word.Substring(indexNum);
+            string consonantPigLatin = substring2 + substring1 + consonantFirst;
+            Console.Write(consonantPigLatin + " ");
+        }
+        public static void TranslateVowel(string word)
+        {
+            string vowelFirst = "way";
+            string vowelPigLatin = word + vowelFirst;
+            Console.Write(vowelPigLatin + " ");
+
+        }
+
     }
 }
